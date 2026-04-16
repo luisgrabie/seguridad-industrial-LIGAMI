@@ -12,16 +12,13 @@
       --blanco: #F9F7F2;
       --gris: #2A2A2A;
       --gris-medio: #444;
-      --gris-claro: #888;
       --rojo: #E03131;
       --verde: #2D9E6B;
       --azul: #1A6FD4;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--negro);
@@ -48,7 +45,7 @@
     .nav-links a {
       color: rgba(249,247,242,0.6);
       text-decoration: none; font-size: 0.85rem;
-      letter-spacing: 0.05em; transition: color 0.2s;
+      transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--amarillo); }
 
@@ -62,66 +59,43 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background:
+      background: 
         radial-gradient(ellipse 60% 60% at 80% 30%, rgba(245,197,24,0.15) 0%, transparent 60%),
         radial-gradient(ellipse 40% 40% at 20% 80%, rgba(26,111,212,0.06) 0%, transparent 50%),
         var(--negro);
+      z-index: -1;
     }
     
-    /* LOGOS ANIMADOS (Actualizados con imágenes reales) */
-    .hero-logos {
+    .hero-logos-top {
       position: absolute;
       top: 100px;
       left: 4rem;
       right: 4rem;
       display: flex;
       justify-content: space-between;
-      pointer-events: none; /* Para no bloquear clicks en el texto debajo */
+      align-items: center;
     }
-    .logo {
-      height: 90px;
-      opacity: 0;
-    }
-    .logo-left {
-      transform: translateX(-80px);
-      animation: slideLeft 1s ease-out forwards;
-    }
-    .logo-right {
-      transform: translateX(80px);
-      animation: slideRight 1s ease-out forwards;
-    }
-    @keyframes slideLeft {
-      to { transform: translateX(0); opacity: 1; }
-    }
-    @keyframes slideRight {
-      to { transform: translateX(0); opacity: 1; }
-    }
+    .logo-anim { opacity: 0; height: 90px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(245,197,24,0.2)); }
+    .logo-l { transform: translateX(-50px); animation: slideIn 1s ease forwards; }
+    .logo-r { transform: translateX(50px); animation: slideIn 1s ease forwards; }
+    
+    @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
 
     .hero-tag {
       font-size: 0.75rem; letter-spacing: 0.2em; color: var(--amarillo);
-      font-weight: 500; margin-bottom: 1.5rem;
-      text-transform: uppercase; position: relative;
+      margin-bottom: 1.5rem; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px;
     }
-    .hero-tag::before {
-      content: '';
-      display: inline-block; width: 30px; height: 1px;
-      background: var(--amarillo); vertical-align: middle;
-      margin-right: 10px;
-    }
+    .hero-tag::before { content: ''; width: 30px; height: 1px; background: var(--amarillo); }
+
     h1 {
       font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(3.5rem, 8vw, 7rem);
-      line-height: 0.95;
-      position: relative;
-      z-index: 2;
+      font-size: clamp(3.5rem, 8vw, 7rem); line-height: 0.95;
     }
     h1 span { color: var(--amarillo); }
     .hero-sub {
-      max-width: 520px; margin-top: 2rem;
-      font-size: 1.05rem; line-height: 1.7;
-      color: rgba(249,247,242,0.6);
-      font-weight: 300; position: relative;
-      z-index: 2;
+      max-width: 550px; margin-top: 2rem;
+      font-size: 1.1rem; color: rgba(249,247,242,0.6); line-height: 1.7;
     }
     .hero-scroll {
       position: absolute; right: 4rem; bottom: 5rem;
@@ -129,238 +103,81 @@
       letter-spacing: 0.2em; color: rgba(249,247,242,0.3);
       text-transform: uppercase;
     }
-    .hero-scroll::after {
-      content: '';
-      display: block; width: 1px; height: 50px;
-      background: rgba(249,247,242,0.2); margin: 10px auto 0;
-    }
 
-    /* SECCIONES */
+    /* SECCIONES GENERAL */
     section { padding: 6rem 4rem; }
+    .section-label { color: var(--amarillo); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; }
+    h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; margin-bottom: 2rem; }
 
-    .section-label {
-      font-size: 0.7rem; letter-spacing: 0.25em;
-      text-transform: uppercase; color: var(--amarillo);
-      font-weight: 500; margin-bottom: 1rem;
-    }
-    h2 {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.1; margin-bottom: 1rem;
-    }
-    .section-intro {
-      max-width: 600px; font-size: 1rem; line-height: 1.8;
-      color: rgba(249,247,242,0.6); margin-bottom: 3rem;
-    }
-
-    /* ¿QUÉ ES EPP? */
+    /* ¿QUÉ ES? */
     #que-es { background: var(--gris); }
-    .que-es-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3rem; align-items: center;
-    }
-    .big-quote {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      line-height: 1.2; color: var(--blanco);
-    }
+    .que-es-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .big-quote { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; line-height: 1.2; }
     .big-quote em { color: var(--amarillo); font-style: normal; }
-    .def-text { color: rgba(249,247,242,0.65); line-height: 1.9; font-weight: 300; }
-    .def-text + .def-text { margin-top: 1rem; }
+    .def-text { color: rgba(249,247,242,0.6); line-height: 1.9; margin-bottom: 1.5rem; font-size: 1rem; }
+
+    /* INSTITUCIONES */
+    #instituciones { background: var(--negro); }
+    .inst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .inst-card {
+      background: rgba(255,255,255,0.02); padding: 3rem 2rem;
+      border-left: 3px solid var(--amarillo); text-align: center;
+      transition: transform 0.3s ease, background 0.3s;
+    }
+    .inst-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.05); }
+    .inst-card img { height: 100px; max-width: 100%; object-fit: contain; margin-bottom: 2rem; }
+    .inst-card h3 { font-family: 'Syne', sans-serif; color: var(--amarillo); margin-bottom: 1rem; }
 
     /* CATEGORÍAS */
     #categorias { background: var(--negro); }
-    .cat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5px;
-      border: 1.5px solid rgba(249,247,242,0.08);
-    }
-    .cat-item {
-      padding: 2.5rem 2rem;
-      border: 1.5px solid rgba(249,247,242,0.08);
-      background: #111;
-      transition: all 0.3s ease;
-      cursor: default;
-    }
-    .cat-item:hover { 
-      background: rgba(245,197,24,0.05); 
-      transform: translateY(-5px);
-    }
-    .cat-img {
-      width: 100%;
-      height: 140px;
-      object-fit: contain;
-      padding: 10px;
-      margin-bottom: 1rem;
-    }
-    .cat-name {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 1.05rem; margin-bottom: 0.5rem;
-    }
-    .cat-desc { font-size: 0.88rem; color: rgba(249,247,242,0.6); line-height: 1.7; }
-    .cat-examples {
-      margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 6px;
-    }
-    .tag {
-      font-size: 0.7rem; padding: 4px 10px;
-      border: 1px solid rgba(249,247,242,0.15);
-      border-radius: 100px; color: rgba(249,247,242,0.6);
-      background: rgba(255,255,255,0.02);
-    }
-    .cat-item.head .cat-name { color: #F5C518; }
-    .cat-item.ojos .cat-name { color: #74C0FC; }
-    .cat-item.manos .cat-name { color: #69DB7C; }
-    .cat-item.pies .cat-name { color: #FFA94D; }
-    .cat-item.respira .cat-name { color: #DA77F2; }
-    .cat-item.caidas .cat-name { color: #FF6B6B; }
-
-    /* INSTITUCIONES section */
-    #instituciones { background: var(--gris); }
-    .instituciones-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-bottom: 4rem;
-    }
-    .institucion-item {
-      padding: 2rem;
-      border-left: 3px solid var(--amarillo);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .institucion-logo {
-      height: 120px;
-      object-fit: contain;
-      margin-bottom: 1.5rem;
-    }
-    .gad-logo {
-      height: 100px; /* Adjust height for the wider horizontal logo */
-      width: 100%;
-      object-fit: contain;
-    }
-    .institucion-name {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      color: var(--amarillo);
-    }
-    .institucion-desc {
-      font-size: 0.85rem;
-      color: rgba(249,247,242,0.6);
-      line-height: 1.5;
-    }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5px; background: rgba(255,255,255,0.1); }
+    .cat-item { padding: 3rem 2rem; background: var(--negro); transition: 0.3s; }
+    .cat-item:hover { background: #111; }
+    .cat-img { width: 100%; height: 150px; object-fit: contain; margin-bottom: 1.5rem; opacity: 0.8; }
+    .cat-name { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.8rem; font-size: 1.2rem; }
+    .cat-desc { font-size: 0.9rem; color: rgba(249,247,242,0.5); line-height: 1.7; margin-bottom: 1.2rem; }
+    .cat-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { font-size: 0.7rem; padding: 4px 12px; border-radius: 100px; background: rgba(255,255,255,0.05); color: rgba(249,247,242,0.6); border: 1px solid rgba(255,255,255,0.1); }
+    
+    /* Colores por categoría */
+    .head .cat-name { color: var(--amarillo); }
+    .eyes .cat-name { color: #74C0FC; }
+    .resp .cat-name { color: #DA77F2; }
+    .hands .cat-name { color: #69DB7C; }
+    .feet .cat-name { color: #FFA94D; }
+    .fall .cat-name { color: #FF6B6B; }
 
     /* IMPORTANCIA */
     #importancia { background: var(--gris); }
-    .stats-row {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 2rem; margin-bottom: 4rem;
-    }
-    .stat-box {
-      padding: 2rem; border-left: 3px solid var(--amarillo);
-    }
-    .stat-num {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 3rem; line-height: 1; color: var(--amarillo);
-    }
-    .stat-label {
-      margin-top: 0.5rem; font-size: 0.85rem;
-      color: rgba(249,247,242,0.5); line-height: 1.5;
-    }
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 4rem; }
+    .stat-box { padding: 2.5rem; border-left: 3px solid var(--amarillo); background: rgba(255,255,255,0.02); }
+    .stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3.5rem; color: var(--amarillo); line-height: 1; }
+    .stat-desc { margin-top: 1rem; font-size: 0.9rem; color: rgba(249,247,242,0.55); line-height: 1.6; }
 
     /* NORMATIVA */
     #normativa { background: var(--negro); }
-    .norma-list { display: grid; gap: 1rem; max-width: 800px; }
-    .norma-item {
-      display: flex; gap: 1.5rem; align-items: flex-start;
-      padding: 1.5rem; border: 1px solid rgba(249,247,242,0.08);
-      border-radius: 4px; transition: border-color 0.2s;
-    }
-    .norma-item:hover { border-color: rgba(245,197,24,0.4); }
-    .norma-badge {
-      min-width: 60px; padding: 4px 0; text-align: center;
-      background: rgba(245,197,24,0.1); color: var(--amarillo);
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
-      border-radius: 2px;
-    }
-    .norma-title {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 0.95rem; margin-bottom: 0.3rem;
-    }
-    .norma-desc { font-size: 0.85rem; color: rgba(249,247,242,0.5); line-height: 1.6; }
+    .norma-item { display: flex; gap: 2rem; padding: 2rem; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 1.5rem; align-items: center; transition: 0.2s; }
+    .norma-item:hover { border-color: var(--amarillo); background: rgba(245,197,24,0.02); }
+    .norma-badge { background: rgba(245,197,24,0.1); color: var(--amarillo); padding: 6px 15px; font-size: 0.75rem; font-weight: 800; border-radius: 4px; min-width: 100px; text-align: center; }
 
-    /* USO CORRECTO */
+    /* PASOS */
     #uso { background: var(--gris); }
-    .pasos { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
-    .paso {
-      position: relative; padding-top: 1rem;
-    }
-    .paso::before {
-      content: attr(data-n);
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 5rem; line-height: 1;
-      color: rgba(245,197,24,0.07);
-      position: absolute; top: -1rem; left: -0.5rem;
-      pointer-events: none;
-    }
-    .paso-title {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 1rem; margin-bottom: 0.5rem; position: relative;
-    }
-    .paso-text {
-      font-size: 0.88rem; color: rgba(249,247,242,0.55);
-      line-height: 1.7; position: relative;
-    }
-    .paso-line {
-      width: 30px; height: 2px; background: var(--amarillo);
-      margin-bottom: 1rem;
-    }
+    .pasos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; }
+    .paso { position: relative; }
+    .paso-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 5rem; color: rgba(245,197,24,0.08); position: absolute; top: -2rem; left: -1rem; z-index: 0; }
+    .paso-content { position: relative; z-index: 1; }
+    .paso-line { width: 40px; height: 2px; background: var(--amarillo); margin-bottom: 1.5rem; }
 
-    /* FOOTER */
-    footer {
-      padding: 3rem 4rem;
-      border-top: 1px solid rgba(249,247,242,0.08);
-      display: flex; justify-content: space-between; align-items: center;
-      background: var(--negro);
-    }
-    .footer-logo {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 1rem; color: var(--amarillo); letter-spacing: 0.1em;
-    }
-    .footer-text { font-size: 0.8rem; color: rgba(249,247,242,0.25); }
-
-    /* GENERAL ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .hero-tag { animation: fadeUp 0.8s ease forwards 0.1s; opacity: 0; }
-    .hero h1 { animation: fadeUp 0.8s ease forwards 0.25s; opacity: 0; }
-    .hero .hero-sub { animation: fadeUp 0.8s ease forwards 0.45s; opacity: 0; }
-
-    /* PC Specific Adjustments */
-    @media (min-width: 1024px) {
-      .hero-sub { max-width: 600px; }
-    }
+    footer { padding: 5rem 4rem; background: var(--negro); border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
+    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--amarillo); font-size: 1.2rem; margin-bottom: 1rem; }
 
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
+      nav { padding: 1.2rem 1.5rem; }
       .nav-links { display: none; }
       section { padding: 4rem 1.5rem; }
-      .hero { padding: 0 1.5rem 4rem; }
-      .hero-logos { left: 1.5rem; right: 1.5rem; top: 80px; }
-      .logo { height: 50px; }
-      h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
-      h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); }
-      .que-es-grid { grid-template-columns: 1fr; }
-      .cat-desc, .institucion-desc, .paso-text, .norma-desc, .stat-label { font-size: 0.8rem; }
-      .instituciones-grid { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .hero-logos-top { top: 80px; left: 1.5rem; right: 1.5rem; }
+      .logo-anim { height: 50px; }
+      .que-es-grid, .inst-grid, .stats-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -374,260 +191,178 @@
       <li><a href="#instituciones">Instituciones</a></li>
       <li><a href="#importancia">Importancia</a></li>
       <li><a href="#normativa">Normativa</a></li>
-      <li><a href="#uso">Uso correcto</a></li>
+      <li><a href="#uso">Uso</a></li>
     </ul>
   </nav>
 
   <section class="hero">
     <div class="hero-bg"></div>
-    
-    <div class="hero-logos">
-      <img src="image_1.png" class="logo logo-left" alt="Logo IESS">
-      <img src="image_0.png" class="logo logo-right" alt="Logo Ligami">
+    <div class="hero-logos-top">
+      <img src="Iess-Ecuador-Logo-Vector.svg-.png" class="logo-anim logo-l" alt="IESS">
+      <img src="483828084_122158731566330290_7486048266412946768_n-removebg-preview (1).jpg" class="logo-anim logo-r" alt="LIGAMI">
     </div>
-
-    <p class="hero-tag">Seguridad Industrial</p>
+    <p class="hero-tag">Seguridad Industrial Avanzada</p>
     <h1>Equipos de<br><span>Protección</span><br>Personal</h1>
-    <p class="hero-sub">
-      La primera línea de defensa entre el trabajador y los riesgos del entorno laboral. Conoce qué son, cómo usarlos y por qué son obligatorios.
-    </p>
-    <span class="hero-scroll">Desplázate</span>
+    <p class="hero-sub">La barrera definitiva para la integridad del trabajador. Descubre la normativa técnica, clasificación y protocolos esenciales de seguridad.</p>
+    <span class="hero-scroll">Sigue bajando</span>
   </section>
 
   <section id="que-es">
     <div class="que-es-grid">
       <div>
-        <p class="section-label">Definición</p>
+        <p class="section-label">Definición Técnica</p>
         <h2>¿Qué es un EPP?</h2>
-        <p class="big-quote">Cualquier equipo destinado a ser <em>llevado por el trabajador</em> para protegerle de riesgos que puedan amenazar su seguridad.</p>
+        <p class="big-quote">Todo dispositivo o vestimenta diseñado para ser <em>utilizado por el individuo</em> y evitar lesiones.</p>
       </div>
       <div>
-        <p class="def-text">
-          Los Equipos de Protección Personal (EPP) son dispositivos, accesorios o indumentaria diseñados específicamente para proteger al trabajador de riesgos físicos, químicos, biológicos, ergonómicos y de seguridad en el entorno laboral.
-        </p>
-        <p class="def-text">
-          A diferencia de las medidas de protección colectiva, el EPP actúa directamente sobre el individuo. Su uso es <strong>obligatorio</strong> cuando los riesgos no pueden eliminarse por otros medios.
-        </p>
-        <p class="def-text">
-          Son el <strong>último recurso</strong> dentro de la jerarquía de controles de riesgos: primero se eliminan los peligros, luego se controlan, y si no es posible, se protege al trabajador.
-        </p>
+        <p class="def-text">Los Equipos de Protección Personal (EPP) son la última línea de defensa en la seguridad laboral. Su función principal es proteger al trabajador de peligros que no han podido ser eliminados mediante controles de ingeniería o administrativos.</p>
+        <p class="def-text">A diferencia de la protección colectiva (como barandillas), el EPP es de uso individual y obligatorio bajo normativas internacionales como ISO 45001 y los convenios de la OIT.</p>
       </div>
     </div>
   </section>
 
   <section id="categorias">
-    <p class="section-label">Tipos de EPP</p>
-    <h2>Categorías principales</h2>
-    <p class="section-intro">Cada parte del cuerpo requiere un equipo específico diseñado para los riesgos de cada zona.</p>
-
+    <p class="section-label">Clasificación</p>
+    <h2>Categorías Principales</h2>
     <div class="cat-grid">
       <div class="cat-item head">
-        <img src="https://cdn.pixabay.com/photo/2013/04/01/10/54/head-protection-98598_1280.png" class="cat-img" alt="Protección Cabeza">
-        <p class="cat-name">🪖 Protección de la cabeza</p>
-        <p class="cat-desc">Protege de impactos, golpes por objetos caídos y riesgos eléctricos en obras y zonas industriales.</p>
-        <div class="cat-examples">
-          <span class="tag">Casco duro</span>
-          <span class="tag">Casco minero</span>
-          <span class="tag">Bumpcap</span>
-        </div>
+        <img src="https://cdn.pixabay.com/photo/2013/04/01/10/54/head-protection-98598_1280.png" class="cat-img">
+        <p class="cat-name">Protección Craneal</p>
+        <p class="cat-desc">Cascos certificados contra impactos mecánicos, caída de objetos y riesgos eléctricos.</p>
+        <div class="cat-tags"><span class="tag">Casco Clase E</span><span class="tag">Barbuquejo</span></div>
       </div>
-      
-      <div class="cat-item ojos">
-        <img src="https://cdn.pixabay.com/photo/2019/10/06/15/48/vr-4530602_1280.png" class="cat-img" alt="Protección Ocular">
-        <p class="cat-name">🥽 Protección ocular y facial</p>
-        <p class="cat-desc">Resguarda ojos y cara de proyecciones, salpicaduras químicas, radiaciones UV y partículas suspendidas.</p>
-        <div class="cat-examples">
-          <span class="tag">Gafas de seguridad</span>
-          <span class="tag">Pantalla facial</span>
-          <span class="tag">Gafas anti-UV</span>
-        </div>
+      <div class="cat-item eyes">
+        <img src="https://cdn.pixabay.com/photo/2019/10/06/15/48/vr-4530602_1280.png" class="cat-img">
+        <p class="cat-name">Protección Ocular</p>
+        <p class="cat-desc">Gafas de seguridad y pantallas faciales contra proyecciones y radiación UV.</p>
+        <div class="cat-tags"><span class="tag">ANSI Z87.1</span><span class="tag">Anti-empañante</span></div>
       </div>
-      
-      <div class="cat-item respira">
-        <img src="https://cdn.pixabay.com/photo/2020/10/19/09/01/mask-duty-5667191_1280.png" class="cat-img" alt="Protección Respiratoria">
-        <p class="cat-name">😷 Protección respiratoria</p>
-        <p class="cat-desc">Filtra el aire inhalado para evitar la exposición a gases tóxicos, polvos, humos y agentes biológicos.</p>
-        <div class="cat-examples">
-          <span class="tag">Mascarilla FFP2/FFP3</span>
-          <span class="tag">Respirador con filtro</span>
-          <span class="tag">Equipo autónomo</span>
-        </div>
+      <div class="cat-item resp">
+        <img src="https://cdn.pixabay.com/photo/2020/10/19/09/01/mask-duty-5667191_1280.png" class="cat-img">
+        <p class="cat-name">Protección Respiratoria</p>
+        <p class="cat-desc">Sistemas de filtrado para atmósferas con polvos, humos, gases o vapores químicos.</p>
+        <div class="cat-tags"><span class="tag">N95</span><span class="tag">P100</span><span class="tag">Filtros químicos</span></div>
       </div>
-      
-      <div class="cat-item manos">
-        <img src="https://cdn.pixabay.com/photo/2013/04/01/10/54/hand-protection-98602_1280.png" class="cat-img" alt="Protección de Manos">
-        <p class="cat-name">🧤 Protección de manos</p>
-        <p class="cat-desc">Protege de cortes, abrasiones, sustancias químicas, calor, frío extremo y riesgos eléctricos.</p>
-        <div class="cat-examples">
-          <span class="tag">Guantes de nitrilo</span>
-          <span class="tag">Guantes anticorte</span>
-          <span class="tag">Guantes dieléctricos</span>
-        </div>
+      <div class="cat-item hands">
+        <img src="https://cdn.pixabay.com/photo/2013/04/01/10/54/hand-protection-98602_1280.png" class="cat-img">
+        <p class="cat-name">Protección Manual</p>
+        <p class="cat-desc">Guantes técnicos contra riesgos mecánicos, químicos, térmicos o eléctricos.</p>
+        <div class="cat-tags"><span class="tag">Nitrilo</span><span class="tag">Kevlar</span><span class="tag">Dieléctricos</span></div>
       </div>
-      
-      <div class="cat-item pies">
-        <img src="https://cdn.pixabay.com/photo/2013/07/12/12/33/men-at-work-145925_1280.png" class="cat-img" alt="Protección de Pies">
-        <p class="cat-name">🥾 Protección de pies</p>
-        <p class="cat-desc">Previene aplastamientos, pinchazos, resbalones y exposición a sustancias peligrosas en el suelo.</p>
-        <div class="cat-examples">
-          <span class="tag">Bota con puntera</span>
-          <span class="tag">Bota antideslizante</span>
-          <span class="tag">Bota química</span>
-        </div>
+      <div class="cat-item feet">
+        <img src="https://cdn.pixabay.com/photo/2013/07/12/12/33/men-at-work-145925_1280.png" class="cat-img">
+        <p class="cat-name">Protección de Pies</p>
+        <p class="cat-desc">Calzado con puntera reforzada, suela antideslizante y resistencia a perforaciones.</p>
+        <div class="cat-tags"><span class="tag">Punta de acero</span><span class="tag">Dieléctrico</span></div>
       </div>
-      
-      <div class="cat-item caidas">
-        <img src="https://cdn.pixabay.com/photo/2013/04/01/21/30/rockfall-99145_1280.png" class="cat-img" alt="Protección contra Caídas">
-        <p class="cat-name">🦺 Protección contra caídas</p>
-        <p class="cat-desc">Indispensable en trabajos en altura. Detiene o amortigua caídas libres que ponen en riesgo la vida.</p>
-        <div class="cat-examples">
-          <span class="tag">Arnés de seguridad</span>
-          <span class="tag">Línea de vida</span>
-          <span class="tag">Eslinga</span>
-        </div>
+      <div class="cat-item fall">
+        <img src="https://cdn.pixabay.com/photo/2013/04/01/21/30/rockfall-99145_1280.png" class="cat-img">
+        <p class="cat-name">Protección de Altura</p>
+        <p class="cat-desc">Equipos de detención de caídas para trabajos por encima de 1.80 metros.</p>
+        <div class="cat-tags"><span class="tag">Arnés 4 argollas</span><span class="tag">Línea de vida</span></div>
       </div>
     </div>
   </section>
 
   <section id="instituciones">
-    <p class="section-label">Organismos Colaboradores</p>
-    <h2>Instituciones Reconocidas</h2>
-    <div class="instituciones-grid">
-      <div class="institucion-item">
-        <img src="image_1.png" alt="Logo IESS" class="institucion-logo">
-        <p class="institucion-name">IESS</p>
-        <p class="institucion-desc">Instituto Ecuatoriano de Seguridad Social. Entidad clave en el sistema de salud y seguridad laboral en Ecuador.</p>
+    <p class="section-label">Aval Institucional</p>
+    <h2>Organismos Colaboradores</h2>
+    <div class="inst-grid">
+      <div class="inst-card">
+        <img src="Iess-Ecuador-Logo-Vector.svg-.png">
+        <h3>IESS</h3>
+        <p class="def-text">Seguro de Riesgos del Trabajo. Principal ente regulador y prestador de salud laboral en el Ecuador.</p>
       </div>
-      <div class="institucion-item ligami">
-        <img src="image_0.png" alt="Logo LIGAMI" class="institucion-logo">
-        <p class="institucion-name">UNIDAD EDUCATIVA LIGAMI</p>
-        <p class="institucion-desc">Institución educativa comprometida con la formación de calidad y la seguridad industrial.</p>
+      <div class="inst-card">
+        <img src="483828084_122158731566330290_7486048266412946768_n-removebg-preview (1).jpg">
+        <h3>LIGAMI</h3>
+        <p class="def-text">Unidad Educativa líder en formación técnica integral y compromiso con la cultura preventiva.</p>
       </div>
-      <div class="institucion-item gad">
-        <img src="image_2.png" alt="Logo GAD Ambato" class="institucion-logo gad-logo">
-        <p class="institucion-name">GAD MUNICIPALIDAD DE AMBATO</p>
-        <p class="institucion-desc">Gobierno Autónomo Descentralizado. Apoya y regula la seguridad industrial en el cantón.</p>
+      <div class="inst-card">
+        <img src="Logo-GAD-Ambato-1024x295.png">
+        <h3>GAD AMBATO</h3>
+        <p class="def-text">Gobierno Municipal que regula y promueve estándares de seguridad industrial en el sector urbano.</p>
       </div>
     </div>
   </section>
 
   <section id="importancia">
-    <p class="section-label">¿Por qué importa?</p>
-    <h2>Cifras que no podemos ignorar</h2>
-    <p class="section-intro">Los accidentes laborales tienen consecuencias devastadoras. El uso correcto del EPP reduce drásticamente estos riesgos.</p>
-
+    <p class="section-label">Estadísticas Vitales</p>
+    <h2>¿Por qué es obligatorio?</h2>
     <div class="stats-row">
-      <div class="stat-box">
-        <p class="stat-num">60%</p>
-        <p class="stat-label">de los accidentes laborales graves podrían evitarse con el uso adecuado del EPP correcto.</p>
-      </div>
-      <div class="stat-box">
-        <p class="stat-num">2,3M</p>
-        <p class="stat-label">de trabajadores mueren cada año en el mundo por accidentes o enfermedades relacionadas al trabajo (OIT).</p>
-      </div>
-      <div class="stat-box">
-        <p class="stat-num">340M</p>
-        <p class="stat-label">de accidentes laborales no fatales ocurren anualmente, muchos de los cuales generan discapacidades permanentes.</p>
-      </div>
-    </div>
-
-    <div class="norma-list" style="margin-top:0;">
-      <div class="norma-item" style="border-color:rgba(224,49,49,0.3);">
-        <div class="norma-badge" style="background:rgba(224,49,49,0.1);color:#E03131;">RIESGO</div>
-        <div>
-          <p class="norma-title">Sin EPP adecuado…</p>
-          <p class="norma-desc">Una salpicadura química puede causar ceguera permanente. Una caída de 2 metros sin arnés puede ser fatal. Un polvo fino inhalado durante años produce silicosis o cáncer pulmonar.</p>
-        </div>
-      </div>
-      <div class="norma-item" style="border-color:rgba(45,158,107,0.3);">
-        <div class="norma-badge" style="background:rgba(45,158,107,0.1);color:#2D9E6B;">PROTECCIÓN</div>
-        <div>
-          <p class="norma-title">Con EPP correctamente usado…</p>
-          <p class="norma-desc">El riesgo se reduce hasta en un 85%. El trabajador puede realizar sus tareas con confianza, y la empresa cumple con su deber legal de garantizar un entorno seguro.</p>
-        </div>
-      </div>
+      <div class="stat-box"><p class="stat-num">60%</p><p class="stat-desc">de las lesiones fatales se evitarían con el uso del casco y arnés adecuado.</p></div>
+      <div class="stat-box"><p class="stat-num">2.3M</p><p class="stat-desc">muertes anuales registradas por la OIT debido a enfermedades o accidentes laborales.</p></div>
+      <div class="stat-box"><p class="stat-num">340M</p><p class="stat-desc">accidentes no fatales ocurren al año, dejando discapacidades en miles de trabajadores.</p></div>
     </div>
   </section>
 
   <section id="normativa">
-    <p class="section-label">Marco legal</p>
-    <h2>Normativa vigente</h2>
-    <p class="section-intro">El uso del EPP no es opcional. Está regulado por normas nacionales e internacionales de obligatorio cumplimiento.</p>
-
-    <div class="norma-list">
-      <div class="norma-item">
-        <div class="norma-badge">ISO 45001</div>
-        <div>
-          <p class="norma-title">Sistema de Gestión de Seguridad y Salud en el Trabajo</p>
-          <p class="norma-desc">Estándar internacional que establece los requisitos para gestionar los riesgos laborales, incluyendo la provisión y control de EPP.</p>
-        </div>
-      </div>
-      <div class="norma-item">
-        <div class="norma-badge">NIOSH</div>
-        <div>
-          <p class="norma-title">Instituto Nacional de Seguridad y Salud Ocupacional (EE.UU.)</p>
-          <p class="norma-desc">Certifica y evalúa equipos respiratorios y otros EPP. Sus clasificaciones (N95, P100, etc.) son referencia global.</p>
-        </div>
-      </div>
-      <div class="norma-item">
-        <div class="norma-badge">EN / CE</div>
-        <div>
-          <p class="norma-title">Normas Europeas y marcado CE</p>
-          <p class="norma-desc">Todo EPP vendido en Europa debe llevar marcado CE. Las normas EN certifican que el equipo ha superado pruebas de resistencia y protección.</p>
-        </div>
-      </div>
-      <div class="norma-item">
-        <div class="norma-badge">OIT</div>
-        <div>
-          <p class="norma-title">Convenios de la Organización Internacional del Trabajo</p>
-          <p class="norma-desc">Los Convenios 155 y 187 obligan a los países miembros a garantizar condiciones seguras de trabajo, incluyendo la provisión gratuita de EPP al trabajador.</p>
-        </div>
-      </div>
-    </div>
+    <p class="section-label">Marco Legal</p>
+    <h2>Estándares Internacionales</h2>
+    <div class="norma-item"><span class="norma-badge">ISO 45001</span><p>Norma mundial para Sistemas de Gestión de Seguridad y Salud en el Trabajo.</p></div>
+    <div class="norma-item"><span class="norma-badge">NIOSH</span><p>Certificación de máxima exigencia para equipos de protección respiratoria en EE.UU.</p></div>
+    <div class="norma-item"><span class="norma-badge">Marcado CE</span><p>Certifica que el producto cumple con los requisitos legales y técnicos de seguridad de la Unión Europea.</p></div>
+    <div class="norma-item"><span class="norma-badge">NTE INEN</span><p>Normas Técnicas Ecuatorianas que dictan la calidad mínima de los EPP en el país.</p></div>
   </section>
 
   <section id="uso">
-    <p class="section-label">Buenas prácticas</p>
-    <h2>Cómo usar el EPP correctamente</h2>
-    <p class="section-intro">Tener el equipo no es suficiente. Un EPP mal usado puede dar una falsa sensación de seguridad y no proteger en absoluto.</p>
-
-    <div class="pasos">
-      <div class="paso" data-n="01">
-        <div class="paso-line"></div>
-        <p class="paso-title">Elegir el EPP correcto</p>
-        <p class="paso-text">Identificar el riesgo específico y seleccionar el equipo certificado para ese riesgo. No todos los guantes protegen de lo mismo.</p>
+    <p class="section-label">Protocolo de Aplicación</p>
+    <h2>Uso Correcto en 6 Pasos</h2>
+    <div class="pasos-grid">
+      <div class="paso">
+        <span class="paso-num">01</span>
+        <div class="paso-content">
+          <div class="paso-line"></div>
+          <h3 style="margin-bottom:0.5rem">Inspección Previa</h3>
+          <p class="def-text">Detectar grietas, rasgaduras o vencimiento del equipo antes de cada jornada laboral.</p>
+        </div>
       </div>
-      <div class="paso" data-n="02">
-        <div class="paso-line"></div>
-        <p class="paso-title">Verificar antes de usar</p>
-        <p class="paso-text">Revisar que el equipo no esté dañado, vencido o deteriorado. Un casco con grietas no protege igual que uno en buen estado.</p>
+      <div class="paso">
+        <span class="paso-num">02</span>
+        <div class="paso-content">
+          <div class="paso-line"></div>
+          <h3 style="margin-bottom:0.5rem">Ajuste Ergonómico</h3>
+          <p class="def-text">El EPP debe ajustarse firmemente pero permitir la movilidad. Un arnés flojo es un riesgo fatal.</p>
+        </div>
       </div>
-      <div class="paso" data-n="03">
-        <div class="paso-line"></div>
-        <p class="paso-title">Ajuste correcto</p>
-        <p class="paso-text">El EPP debe ajustarse bien al cuerpo del trabajador. Un arnés mal ajustado puede empeorar una caída. Los guantes demasiado grandes reducen la destreza.</p>
+      <div class="paso">
+        <span class="paso-num">03</span>
+        <div class="paso-content">
+          <div class="paso-line"></div>
+          <h3 style="margin-bottom:0.5rem">Uso Permanente</h3>
+          <p class="def-text">La protección debe mantenerse durante el 100% del tiempo de exposición al riesgo.</p>
+        </div>
       </div>
-      <div class="paso" data-n="04">
-        <div class="paso-line"></div>
-        <p class="paso-title">Usarlo durante toda la tarea</p>
-        <p class="paso-text">Quitarse el EPP aunque sea "un momento" es cuando ocurren los accidentes. La protección debe mantenerse durante toda la exposición al riesgo.</p>
+      <div class="paso">
+        <span class="paso-num">04</span>
+        <div class="paso-content">
+          <div class="paso-line"></div>
+          <h3 style="margin-bottom:0.5rem">Limpieza Técnica</h3>
+          <p class="def-text">Higienizar los equipos con productos no corrosivos para no degradar los materiales.</p>
+        </div>
       </div>
-      <div class="paso" data-n="05">
-        <div class="paso-line"></div>
-        <p class="paso-title">Mantenimiento y almacenamiento</p>
-        <p class="paso-text">Limpiar, revisar y guardar correctamente el EPP prolonga su vida útil y garantiza que funcionará cuando más lo necesites.</p>
+      <div class="paso">
+        <span class="paso-num">05</span>
+        <div class="paso-content">
+          <div class="paso-line"></div>
+          <h3 style="margin-bottom:0.5rem">Almacenaje Correcto</h3>
+          <p class="def-text">Guardar en lugares libres de humedad, sol directo y contaminación química.</p>
+        </div>
       </div>
-      <div class="paso" data-n="06">
-        <div class="paso-line"></div>
-        <p class="paso-title">Reemplazarlo a tiempo</p>
-        <p class="paso-text">Todo EPP tiene una vida útil. Las mascarillas, guantes y arneses deben reemplazarse según las indicaciones del fabricante o ante cualquier señal de daño.</p>
+      <div class="paso">
+        <span class="paso-num">06</span>
+        <div class="paso-content">
+          <div class="paso-line"></div>
+          <h3 style="margin-bottom:0.5rem">Reposición Inmediata</h3>
+          <p class="def-text">Todo EPP que haya sufrido un impacto o presente fatiga debe ser reemplazado sin excepción.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <footer>
-    <p class="footer-logo">EPP · SEGURIDAD INDUSTRIAL</p>
-    <p class="footer-text">Presentación informativa · Seguridad y Salud en el Trabajo</p>
+    <div class="footer-logo">EPP · SEGURIDAD INDUSTRIAL</div>
+    <p style="color:rgba(255,255,255,0.2); font-size:0.8rem">Guía Técnica Profesional para la Prevención de Riesgos Laborales © 2026</p>
   </footer>
 
 </body>
