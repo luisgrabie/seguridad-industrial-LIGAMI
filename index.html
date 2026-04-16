@@ -68,7 +68,7 @@
         var(--negro);
     }
     
-    /* LOGOS ANIMADOS (Integrados del Archivo 2) */
+    /* LOGOS ANIMADOS (Actualizados con imágenes reales) */
     .hero-logos {
       position: absolute;
       top: 100px;
@@ -168,7 +168,7 @@
     .def-text { color: rgba(249,247,242,0.65); line-height: 1.9; font-weight: 300; }
     .def-text + .def-text { margin-top: 1rem; }
 
-    /* CATEGORÍAS (Integrado con el grid responsivo y las imágenes del Archivo 2) */
+    /* CATEGORÍAS */
     #categorias { background: var(--negro); }
     .cat-grid {
       display: grid;
@@ -214,6 +214,45 @@
     .cat-item.pies .cat-name { color: #FFA94D; }
     .cat-item.respira .cat-name { color: #DA77F2; }
     .cat-item.caidas .cat-name { color: #FF6B6B; }
+
+    /* INSTITUCIONES section */
+    #instituciones { background: var(--gris); }
+    .instituciones-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    .institucion-item {
+      padding: 2rem;
+      border-left: 3px solid var(--amarillo);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .institucion-logo {
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+    }
+    .gad-logo {
+      height: 100px; /* Adjust height for the wider horizontal logo */
+      width: 100%;
+      object-fit: contain;
+    }
+    .institucion-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--amarillo);
+    }
+    .institucion-desc {
+      font-size: 0.85rem;
+      color: rgba(249,247,242,0.6);
+      line-height: 1.5;
+    }
 
     /* IMPORTANCIA */
     #importancia { background: var(--gris); }
@@ -294,7 +333,7 @@
     }
     .footer-text { font-size: 0.8rem; color: rgba(249,247,242,0.25); }
 
-    /* ANIMATIONS GENERALES */
+    /* GENERAL ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -303,6 +342,11 @@
     .hero h1 { animation: fadeUp 0.8s ease forwards 0.25s; opacity: 0; }
     .hero .hero-sub { animation: fadeUp 0.8s ease forwards 0.45s; opacity: 0; }
 
+    /* PC Specific Adjustments */
+    @media (min-width: 1024px) {
+      .hero-sub { max-width: 600px; }
+    }
+
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
@@ -310,7 +354,11 @@
       .hero { padding: 0 1.5rem 4rem; }
       .hero-logos { left: 1.5rem; right: 1.5rem; top: 80px; }
       .logo { height: 50px; }
+      h1 { font-size: clamp(2.5rem, 6vw, 4rem); }
+      h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); }
       .que-es-grid { grid-template-columns: 1fr; }
+      .cat-desc, .institucion-desc, .paso-text, .norma-desc, .stat-label { font-size: 0.8rem; }
+      .instituciones-grid { grid-template-columns: 1fr; }
       .stats-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
@@ -323,6 +371,7 @@
     <ul class="nav-links">
       <li><a href="#que-es">¿Qué es?</a></li>
       <li><a href="#categorias">Categorías</a></li>
+      <li><a href="#instituciones">Instituciones</a></li>
       <li><a href="#importancia">Importancia</a></li>
       <li><a href="#normativa">Normativa</a></li>
       <li><a href="#uso">Uso correcto</a></li>
@@ -333,8 +382,8 @@
     <div class="hero-bg"></div>
     
     <div class="hero-logos">
-      <img src="Iess-Ecuador-Logo-Vector.svg-.png" class="logo logo-left" alt="Logo IESS">
-      <img src="ligami.png" class="logo logo-right" alt="Logo Ligami">
+      <img src="image_1.png" class="logo logo-left" alt="Logo IESS">
+      <img src="image_0.png" class="logo logo-right" alt="Logo Ligami">
     </div>
 
     <p class="hero-tag">Seguridad Industrial</p>
@@ -436,6 +485,28 @@
           <span class="tag">Línea de vida</span>
           <span class="tag">Eslinga</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="instituciones">
+    <p class="section-label">Organismos Colaboradores</p>
+    <h2>Instituciones Reconocidas</h2>
+    <div class="instituciones-grid">
+      <div class="institucion-item">
+        <img src="image_1.png" alt="Logo IESS" class="institucion-logo">
+        <p class="institucion-name">IESS</p>
+        <p class="institucion-desc">Instituto Ecuatoriano de Seguridad Social. Entidad clave en el sistema de salud y seguridad laboral en Ecuador.</p>
+      </div>
+      <div class="institucion-item ligami">
+        <img src="image_0.png" alt="Logo LIGAMI" class="institucion-logo">
+        <p class="institucion-name">UNIDAD EDUCATIVA LIGAMI</p>
+        <p class="institucion-desc">Institución educativa comprometida con la formación de calidad y la seguridad industrial.</p>
+      </div>
+      <div class="institucion-item gad">
+        <img src="image_2.png" alt="Logo GAD Ambato" class="institucion-logo gad-logo">
+        <p class="institucion-name">GAD MUNICIPALIDAD DE AMBATO</p>
+        <p class="institucion-desc">Gobierno Autónomo Descentralizado. Apoya y regula la seguridad industrial en el cantón.</p>
       </div>
     </div>
   </section>
