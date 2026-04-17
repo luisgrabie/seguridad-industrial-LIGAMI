@@ -7,177 +7,194 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --amarillo: #F5C518;
-      --negro: #0D0D0D;
-      --blanco: #F9F7F2;
-      --gris: #2A2A2A;
-      --gris-medio: #444;
-      --rojo: #E03131;
-      --verde: #2D9E6B;
-      --azul: #1A6FD4;
+      --amarillo: #D4A017;
+      --amarillo-vivo: #F0B429;
+      --negro: #1A1209;
+      --crema: #FAF6EE;
+      --crema-oscuro: #F0E8D5;
+      --cafe: #3D2B10;
+      --cafe-medio: #5C4020;
+      --cafe-claro: #8A6840;
+      --texto: #1C1208;
+      --texto-muted: #5C4A2A;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--negro);
-      color: var(--blanco);
-      overflow-x: hidden;
-    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--crema); color: var(--texto); overflow-x: hidden; }
 
-    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 4rem;
-      background: rgba(13,13,13,0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(245,197,24,0.15);
+      padding: 1rem 4rem;
+      background: rgba(250,246,238,0.96); backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--amarillo-vivo);
     }
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800; font-size: 1.1rem;
-      letter-spacing: 0.1em; color: var(--amarillo);
-      text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      color: rgba(249,247,242,0.6);
-      text-decoration: none; font-size: 0.85rem;
-      transition: color 0.2s;
-    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; letter-spacing: 0.1em; color: var(--cafe); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a { color: var(--cafe-medio); text-decoration: none; font-size: 0.8rem; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover { color: var(--amarillo); }
 
-    /* HERO */
-    .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 0 4rem 5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background: 
-        radial-gradient(ellipse 60% 60% at 80% 30%, rgba(245,197,24,0.15) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(26,111,212,0.06) 0%, transparent 50%),
-        var(--negro);
-      z-index: -1;
-    }
-    
-    .hero-logos-top {
-      position: absolute;
-      top: 100px;
-      left: 4rem;
-      right: 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo-anim { opacity: 0; height: 90px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(245,197,24,0.2)); }
-    .logo-l { transform: translateX(-50px); animation: slideIn 1s ease forwards; }
-    .logo-r { transform: translateX(50px); animation: slideIn 1s ease forwards; }
-    
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 4rem 5rem; position: relative; overflow: hidden; background: var(--negro); }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 75% 25%, rgba(240,180,41,0.25) 0%, transparent 60%), radial-gradient(ellipse 40% 50% at 20% 80%, rgba(90,50,10,0.4) 0%, transparent 60%); z-index: 0; }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-logos-top { position: absolute; top: 100px; left: 4rem; right: 4rem; display: flex; justify-content: space-between; align-items: center; z-index: 2; }
+    .logo-anim { opacity: 0; height: 80px; object-fit: contain; }
+    .logo-l { transform: translateX(-50px); animation: slideIn 1s ease 0.3s forwards; }
+    .logo-r { transform: translateX(50px); animation: slideIn 1s ease 0.3s forwards; }
     @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
+    .hero-tag { font-size: 0.75rem; letter-spacing: 0.25em; color: var(--amarillo-vivo); margin-bottom: 1.5rem; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+    .hero-tag::before { content: ''; width: 30px; height: 2px; background: var(--amarillo-vivo); }
+    h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3rem, 9vw, 7.5rem); line-height: 0.92; color: #FAF6EE; }
+    h1 span { color: var(--amarillo-vivo); }
+    .hero-sub { max-width: 550px; margin-top: 2rem; font-size: 1.05rem; color: rgba(250,246,238,0.72); line-height: 1.8; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 1.8rem; padding: 9px 18px; background: rgba(240,180,41,0.1); border: 1px solid rgba(240,180,41,0.3); border-radius: 6px; font-size: 0.78rem; color: var(--amarillo-vivo); font-weight: 600; letter-spacing: 0.05em; }
+    .hero-scroll { position: absolute; right: 4rem; bottom: 5rem; writing-mode: vertical-rl; font-size: 0.7rem; letter-spacing: 0.2em; color: rgba(240,180,41,0.35); text-transform: uppercase; z-index: 2; }
 
-    .hero-tag {
-      font-size: 0.75rem; letter-spacing: 0.2em; color: var(--amarillo);
-      margin-bottom: 1.5rem; text-transform: uppercase;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .hero-tag::before { content: ''; width: 30px; height: 1px; background: var(--amarillo); }
-
-    h1 {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(3.5rem, 8vw, 7rem); line-height: 0.95;
-    }
-    h1 span { color: var(--amarillo); }
-    .hero-sub {
-      max-width: 550px; margin-top: 2rem;
-      font-size: 1.1rem; color: rgba(249,247,242,0.6); line-height: 1.7;
-    }
-    .hero-scroll {
-      position: absolute; right: 4rem; bottom: 5rem;
-      writing-mode: vertical-rl; font-size: 0.7rem;
-      letter-spacing: 0.2em; color: rgba(249,247,242,0.3);
-      text-transform: uppercase;
-    }
-
-    /* SECCIONES GENERAL */
     section { padding: 6rem 4rem; }
-    .section-label { color: var(--amarillo); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; }
-    h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; margin-bottom: 2rem; }
+    .section-label { color: var(--amarillo); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; font-weight: 700; }
+    h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-bottom: 2rem; color: var(--cafe); }
+    .def-text { color: var(--texto-muted); line-height: 1.9; margin-bottom: 1.5rem; font-size: 1rem; }
 
-    /* ¿QUÉ ES? */
-    #que-es { background: var(--gris); }
+    #que-es { background: var(--crema-oscuro); }
     .que-es-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-    .big-quote { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; line-height: 1.2; }
+    .big-quote { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.9rem; line-height: 1.25; color: var(--cafe); }
     .big-quote em { color: var(--amarillo); font-style: normal; }
-    .def-text { color: rgba(249,247,242,0.6); line-height: 1.9; margin-bottom: 1.5rem; font-size: 1rem; }
+    .art-ref { display: inline-block; margin-top: 1.5rem; padding: 8px 16px; background: rgba(212,160,23,0.1); border-left: 3px solid var(--amarillo); border-radius: 0 6px 6px 0; font-size: 0.82rem; color: var(--cafe-medio); font-style: italic; line-height: 1.5; }
 
-    /* INSTITUCIONES */
-    #instituciones { background: var(--negro); }
+    #obligaciones { background: var(--crema); }
+    .oblig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .oblig-col h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 2px solid var(--amarillo-vivo); color: var(--cafe); }
+    .oblig-list { list-style: none; }
+    .oblig-list li { display: flex; gap: 12px; align-items: flex-start; padding: 0.85rem 0; border-bottom: 1px solid rgba(180,120,40,0.12); font-size: 0.92rem; color: var(--texto-muted); line-height: 1.6; }
+    .oblig-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amarillo-vivo); margin-top: 7px; flex-shrink: 0; }
+    .oblig-employer .oblig-list li::before { background: #1A5FA0; }
+    .oblig-worker .oblig-list li::before { background: #1A7A4A; }
+
+    #categorias { background: var(--crema-oscuro); }
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; }
+    .cat-item { padding: 2.2rem 2rem; background: #fff; border-radius: 12px; border-top: 4px solid var(--amarillo-vivo); box-shadow: 0 2px 12px rgba(100,60,0,0.08); transition: transform 0.3s, box-shadow 0.3s; }
+    .cat-item:hover { transform: translateY(-6px); box-shadow: 0 8px 24px rgba(100,60,0,0.14); }
+    .cat-img { width: 100%; height: 100px; object-fit: contain; margin-bottom: 1.2rem; opacity: 0.85; }
+    .cat-name { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.5rem; font-size: 1.08rem; }
+    .cat-desc { font-size: 0.87rem; color: var(--texto-muted); line-height: 1.7; margin-bottom: 0.5rem; }
+    .cat-art { font-size: 0.72rem; color: var(--cafe-claro); font-style: italic; margin-bottom: 0.9rem; }
+    .cat-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-size: 0.7rem; padding: 3px 10px; border-radius: 100px; background: var(--crema-oscuro); color: var(--cafe-medio); border: 1px solid rgba(180,120,40,0.2); font-weight: 500; }
+    .head .cat-name { color: #B45309; }
+    .eyes .cat-name { color: #1A5FA0; }
+    .ear .cat-name { color: #0E7490; }
+    .resp .cat-name { color: #7E22CE; }
+    .hands .cat-name { color: #166534; }
+    .feet .cat-name { color: #92400E; }
+    .fall .cat-name { color: #991B1B; }
+    .body .cat-name { color: #65350F; }
+
+    #ropa { background: var(--crema); }
+    .ropa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .ropa-list { list-style: none; margin-top: 1rem; }
+    .ropa-list li { padding: 1rem 1rem 1rem 1.5rem; margin-bottom: 0.8rem; border-left: 3px solid var(--amarillo-vivo); background: #fff; border-radius: 0 8px 8px 0; font-size: 0.91rem; color: var(--texto-muted); line-height: 1.6; }
+    .ropa-list li strong { color: var(--cafe); display: block; margin-bottom: 3px; font-weight: 600; }
+    .ropa-especial { background: rgba(212,160,23,0.06); border: 1px solid rgba(212,160,23,0.22); border-radius: 10px; padding: 2rem; margin-top: 1rem; }
+    .ropa-especial h4 { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--cafe); margin-bottom: 1rem; font-size: 1rem; }
+    .ropa-especial ul { list-style: none; }
+    .ropa-especial ul li { padding: 0.6rem 0; border-bottom: 1px solid rgba(180,120,40,0.1); font-size: 0.87rem; color: var(--texto-muted); display: flex; gap: 10px; }
+    .ropa-especial ul li::before { content: '▸'; color: var(--amarillo); flex-shrink: 0; }
+
+    #reforma { background: var(--negro); }
+    #reforma h2 { color: var(--crema); }
+    #reforma .section-label { color: var(--amarillo-vivo); }
+    .reforma-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 3rem; padding: 1.5rem 2rem; background: rgba(240,180,41,0.07); border: 1px solid rgba(240,180,41,0.2); border-radius: 10px; }
+    .reforma-header .decreto { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: var(--amarillo-vivo); min-width: 190px; line-height: 1.4; }
+    .reforma-header p { color: rgba(250,246,238,0.55); font-size: 0.88rem; line-height: 1.7; }
+    .reforma-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; }
+    .reforma-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(240,180,41,0.14); border-radius: 10px; padding: 2rem; transition: background 0.3s, border-color 0.3s; }
+    .reforma-card:hover { background: rgba(240,180,41,0.06); border-color: rgba(240,180,41,0.35); }
+    .reforma-card .art-num { font-size: 0.7rem; font-weight: 800; color: var(--amarillo-vivo); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.8rem; }
+    .reforma-card h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--crema); margin-bottom: 0.8rem; }
+    .reforma-card p { color: rgba(250,246,238,0.52); font-size: 0.87rem; line-height: 1.7; }
+
+    #instituciones { background: var(--cafe); }
+    #instituciones h2 { color: var(--crema); }
     .inst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .inst-card {
-      background: rgba(255,255,255,0.02); padding: 3rem 2rem;
-      border-left: 3px solid var(--amarillo); text-align: center;
-      transition: transform 0.3s ease, background 0.3s;
-    }
-    .inst-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.05); }
-    .inst-card img { height: 100px; max-width: 100%; object-fit: contain; margin-bottom: 2rem; }
-    .inst-card h3 { font-family: 'Syne', sans-serif; color: var(--amarillo); margin-bottom: 1rem; }
+    .inst-card { background: rgba(255,255,255,0.04); padding: 3rem 2rem; border-radius: 10px; border: 1px solid rgba(240,180,41,0.2); text-align: center; transition: transform 0.3s, background 0.3s; text-decoration: none; display: block; }
+    .inst-card:hover { transform: translateY(-8px); background: rgba(240,180,41,0.08); border-color: var(--amarillo-vivo); }
+    .inst-card img { height: 90px; max-width: 100%; object-fit: contain; margin-bottom: 2rem; }
+    .inst-card h3 { font-family: 'Syne', sans-serif; color: var(--amarillo-vivo); margin-bottom: 1rem; font-size: 1.1rem; }
+    .inst-card .def-text { color: rgba(250,246,238,0.5); font-size: 0.88rem; }
 
-    /* CATEGORÍAS */
-    #categorias { background: var(--negro); }
-    .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5px; background: rgba(255,255,255,0.1); }
-    .cat-item { padding: 3rem 2rem; background: var(--negro); transition: 0.3s; }
-    .cat-item:hover { background: #111; }
-    .cat-img { width: 100%; height: 150px; object-fit: contain; margin-bottom: 1.5rem; opacity: 0.8; }
-    .cat-name { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.8rem; font-size: 1.2rem; }
-    .cat-desc { font-size: 0.9rem; color: rgba(249,247,242,0.5); line-height: 1.7; margin-bottom: 1.2rem; }
-    .cat-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag { font-size: 0.7rem; padding: 4px 12px; border-radius: 100px; background: rgba(255,255,255,0.05); color: rgba(249,247,242,0.6); border: 1px solid rgba(255,255,255,0.1); }
-    
-    /* Colores por categoría */
-    .head .cat-name { color: var(--amarillo); }
-    .eyes .cat-name { color: #74C0FC; }
-    .resp .cat-name { color: #DA77F2; }
-    .hands .cat-name { color: #69DB7C; }
-    .feet .cat-name { color: #FFA94D; }
-    .fall .cat-name { color: #FF6B6B; }
+    #importancia { background: var(--crema-oscuro); }
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2.5rem; }
+    .stat-box { padding: 2.5rem; border-radius: 10px; background: #fff; border-left: 4px solid var(--amarillo-vivo); box-shadow: 0 2px 12px rgba(100,60,0,0.08); }
+    .stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3.2rem; color: var(--amarillo); line-height: 1; }
+    .stat-desc { margin-top: 1rem; font-size: 0.9rem; color: var(--texto-muted); line-height: 1.6; }
 
-    /* IMPORTANCIA */
-    #importancia { background: var(--gris); }
-    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 4rem; }
-    .stat-box { padding: 2.5rem; border-left: 3px solid var(--amarillo); background: rgba(255,255,255,0.02); }
-    .stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3.5rem; color: var(--amarillo); line-height: 1; }
-    .stat-desc { margin-top: 1rem; font-size: 0.9rem; color: rgba(249,247,242,0.55); line-height: 1.6; }
+    #jerarquia { background: var(--crema); }
+    .jerarquia-piramide { display: flex; flex-direction: column; gap: 0.6rem; max-width: 680px; margin: 2rem auto 0; }
+    .jerarquia-nivel { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 2rem; border-radius: 8px; transition: transform 0.2s; cursor: default; }
+    .jerarquia-nivel:hover { transform: translateX(6px); }
+    .jn-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.8rem; min-width: 36px; opacity: 0.6; }
+    .jn-content h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 3px; }
+    .jn-content p { font-size: 0.84rem; line-height: 1.5; opacity: 0.82; }
+    .n1 { background: #C0392B; color: #fff; }
+    .n2 { background: #E67E22; color: #fff; }
+    .n3 { background: #F0B429; color: var(--negro); }
+    .n4 { background: #2D9E6B; color: #fff; }
+    .n5 { background: #1A5FA0; color: #fff; }
+    .jerarquia-note { text-align: center; margin-top: 2rem; font-size: 0.83rem; color: var(--texto-muted); font-style: italic; padding: 1rem; background: rgba(212,160,23,0.07); border-radius: 8px; }
 
-    /* NORMATIVA */
-    #normativa { background: var(--negro); }
-    .norma-item { display: flex; gap: 2rem; padding: 2rem; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 1.5rem; align-items: center; transition: 0.2s; }
-    .norma-item:hover { border-color: var(--amarillo); background: rgba(245,197,24,0.02); }
-    .norma-badge { background: rgba(245,197,24,0.1); color: var(--amarillo); padding: 6px 15px; font-size: 0.75rem; font-weight: 800; border-radius: 4px; min-width: 100px; text-align: center; }
+    #normativa { background: var(--crema-oscuro); }
+    .norma-item { display: flex; gap: 2rem; padding: 1.6rem 2rem; border: 1px solid rgba(180,120,40,0.18); border-radius: 8px; margin-bottom: 1rem; align-items: center; background: #fff; transition: 0.2s; }
+    .norma-item:hover { border-color: var(--amarillo); }
+    .norma-badge { background: var(--amarillo-vivo); color: var(--negro); padding: 6px 14px; font-size: 0.75rem; font-weight: 800; border-radius: 6px; min-width: 115px; text-align: center; flex-shrink: 0; }
+    .norma-item p { color: var(--texto-muted); font-size: 0.92rem; line-height: 1.6; }
 
-    /* PASOS */
-    #uso { background: var(--gris); }
-    .pasos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; }
+    #uso { background: var(--negro); }
+    #uso h2 { color: var(--crema); }
+    #uso .section-label { color: var(--amarillo-vivo); }
+    .pasos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 3rem; }
     .paso { position: relative; }
-    .paso-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 5rem; color: rgba(245,197,24,0.08); position: absolute; top: -2rem; left: -1rem; z-index: 0; }
+    .paso-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 5rem; color: rgba(240,180,41,0.08); position: absolute; top: -2rem; left: -1rem; }
     .paso-content { position: relative; z-index: 1; }
-    .paso-line { width: 40px; height: 2px; background: var(--amarillo); margin-bottom: 1.5rem; }
+    .paso-line { width: 40px; height: 3px; background: var(--amarillo-vivo); margin-bottom: 1.5rem; border-radius: 2px; }
+    .paso-content h3 { color: var(--crema); margin-bottom: 0.6rem; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; }
+    .paso-content .def-text { color: rgba(250,246,238,0.5); }
 
-    footer { padding: 5rem 4rem; background: var(--negro); border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
-    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--amarillo); font-size: 1.2rem; margin-bottom: 1rem; }
+    footer { padding: 4rem; background: var(--negro); border-top: 2px solid rgba(240,180,41,0.12); text-align: center; }
+    .footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--amarillo-vivo); font-size: 1.2rem; margin-bottom: 0.8rem; }
+    .footer-ref { margin-top: 1.5rem; display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+    .footer-ref span { font-size: 0.76rem; color: rgba(250,246,238,0.22); }
 
+    @media (max-width: 900px) {
+      .que-es-grid, .oblig-grid, .ropa-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .inst-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .stats-row { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    }
     @media (max-width: 768px) {
-      nav { padding: 1.2rem 1.5rem; }
+      nav { padding: 1rem 1.2rem; }
       .nav-links { display: none; }
-      section { padding: 4rem 1.5rem; }
-      .hero-logos-top { top: 80px; left: 1.5rem; right: 1.5rem; }
+      section { padding: 3.5rem 1.4rem; }
+      .hero { padding: 0 1.4rem 4rem; }
+      .hero-logos-top { top: 80px; left: 1.4rem; right: 1.4rem; }
       .logo-anim { height: 50px; }
-      .que-es-grid, .inst-grid, .stats-row { grid-template-columns: 1fr; }
+      .hero-scroll { display: none; }
+      h1 { font-size: clamp(2.6rem, 13vw, 4rem); }
+      h2 { font-size: clamp(1.7rem, 7vw, 2.4rem); }
+      .cat-grid, .reforma-grid, .pasos-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .stats-row { grid-template-columns: 1fr; gap: 1rem; }
+      .norma-item { flex-direction: column; gap: 1rem; align-items: flex-start; }
+      .norma-badge { min-width: auto; }
+      .reforma-header { flex-direction: column; align-items: flex-start; }
+      .big-quote { font-size: 1.5rem; }
+      .stat-num { font-size: 2.6rem; }
+      .jerarquia-nivel { padding: 1rem 1.2rem; }
+      .jn-num { font-size: 1.3rem; }
+      footer { padding: 3rem 1.4rem; }
+      .footer-ref { flex-direction: column; gap: 0.8rem; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: clamp(2.2rem, 14vw, 3rem); }
+      section { padding: 3rem 1rem; }
+      .hero { padding: 0 1rem 3rem; }
     }
   </style>
 </head>
@@ -187,9 +204,11 @@
     <a href="#" class="nav-logo">EPP · SEGURIDAD</a>
     <ul class="nav-links">
       <li><a href="#que-es">¿Qué es?</a></li>
+      <li><a href="#obligaciones">Obligaciones</a></li>
       <li><a href="#categorias">Categorías</a></li>
+      <li><a href="#ropa">Ropa</a></li>
+      <li><a href="#reforma">Reforma 2025</a></li>
       <li><a href="#instituciones">Instituciones</a></li>
-      <li><a href="#importancia">Importancia</a></li>
       <li><a href="#normativa">Normativa</a></li>
       <li><a href="#uso">Uso</a></li>
     </ul>
@@ -201,9 +220,12 @@
       <img src="Iess-Ecuador-Logo-Vector.svg-.png" class="logo-anim logo-l" alt="IESS">
       <img src="483828084_122158731566330290_7486048266412946768_n-removebg-preview (1).png" class="logo-anim logo-r" alt="LIGAMI">
     </div>
-    <p class="hero-tag">Seguridad Industrial Avanzada</p>
-    <h1>Equipos de<br><span>Protección</span><br>Personal</h1>
-    <p class="hero-sub">La barrera definitiva para la integridad del trabajador. Descubre la normativa técnica, clasificación y protocolos esenciales de seguridad.</p>
+    <div class="hero-content">
+      <p class="hero-tag">Seguridad Industrial · Ecuador</p>
+      <h1>Equipos de<br><span>Protección</span><br>Personal</h1>
+      <p class="hero-sub">Normativa técnica vigente, clasificación oficial y protocolos de seguridad conforme al Reglamento de Seguridad y Salud de los Trabajadores y la Reforma 2025 del Ministerio del Trabajo.</p>
+      <div class="hero-badge">⚖ Acuerdo Ministerial MDT-2025-122 · Vigente</div>
+    </div>
     <span class="hero-scroll">Sigue bajando</span>
   </section>
 
@@ -212,54 +234,188 @@
       <div>
         <p class="section-label">Definición Técnica</p>
         <h2>¿Qué es un EPP?</h2>
-        <p class="big-quote">Todo dispositivo o vestimenta diseñado para ser <em>utilizado por el individuo</em> y evitar lesiones.</p>
+        <p class="big-quote">Todo dispositivo diseñado para ser <em>utilizado por el individuo</em> como barrera frente a los riesgos del trabajo.</p>
+        <span class="art-ref">Art. 175 — Reglamento de Seguridad y Salud de los Trabajadores, Ecuador</span>
       </div>
       <div>
-        <p class="def-text">Los Equipos de Protección Personal (EPP) son la última línea de defensa en la seguridad laboral. Su función principal es proteger al trabajador de peligros que no han podido ser eliminados mediante controles de ingeniería o administrativos.</p>
-        <p class="def-text">A diferencia de la protección colectiva (como barandillas), el EPP es de uso individual y obligatorio bajo normativas internacionales como ISO 45001 y los convenios de la OIT.</p>
+        <p class="def-text">Los EPP son la <strong>última línea de defensa</strong> en la jerarquía de controles. Se activan cuando no es viable eliminar el riesgo mediante controles de ingeniería o medidas colectivas. Su uso es obligatorio en dos casos: cuando no sea viable el empleo de protección colectiva, o simultáneamente con ella cuando no garantice protección total.</p>
+        <p class="def-text">La protección personal no exime en ningún caso de la obligación de emplear medios preventivos de carácter colectivo. Además, según el Art. 31 de la Reforma 2025, el empleador deberá dotar los EPP <strong>sin costo alguno para el trabajador</strong>, considerando vida útil y factores de riesgo por puesto.</p>
+        <p class="def-text">Los EPP deben seleccionarse entre los normalizados u homologados por el <strong>INEN</strong> (Art. 175, numeral 7), y en su defecto deben cumplir todos los requisitos del Título VI del reglamento vigente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="obligaciones">
+    <p class="section-label">Marco Legal · Art. 175</p>
+    <h2>Obligaciones Legales</h2>
+    <div class="oblig-grid">
+      <div class="oblig-col oblig-employer">
+        <h3>🏢 Obligaciones del Empleador</h3>
+        <ul class="oblig-list">
+          <li>Suministrar los medios de uso obligatorio para proteger al trabajador de los riesgos inherentes a su labor.</li>
+          <li>Proporcionar accesorios necesarios para la correcta conservación o disponer un servicio de mantenimiento dedicado.</li>
+          <li>Renovar oportunamente los medios de protección o sus componentes conforme a sus características y necesidades.</li>
+          <li>Instruir al trabajador sobre el correcto uso, conservación, aplicaciones y limitaciones de cada EPP.</li>
+          <li>Determinar los lugares y puestos donde sea obligatorio el uso de algún equipo de protección.</li>
+          <li>Dotar sin costo para el trabajador de EPP y ropa de trabajo en cantidad suficiente y oportuna (Reforma 2025, Art. 31).</li>
+          <li>Colocar señalización visible que indique los requisitos mínimos de uso de EPP obligatorios en la obra (Reforma Art. 31).</li>
+        </ul>
+      </div>
+      <div class="oblig-col oblig-worker">
+        <h3>👷 Obligaciones del Trabajador</h3>
+        <ul class="oblig-list">
+          <li>Utilizar en su trabajo los medios de protección personal conforme a las instrucciones dictadas por la empresa.</li>
+          <li>Hacer uso correcto de los EPP, sin introducir reformas ni modificaciones de ningún tipo.</li>
+          <li>Atender a la perfecta conservación de sus medios, prohibiéndose su uso fuera de las horas de trabajo.</li>
+          <li>Comunicar a su superior inmediato o al Comité de Seguridad las deficiencias observadas en estado o funcionamiento.</li>
+          <li>Informar la carencia de EPP o sugerir mejoras para su funcionamiento cuando lo considere pertinente.</li>
+          <li>Inspeccionar el equipo antes de cada jornada y reportar cualquier anomalía detectada de inmediato.</li>
+        </ul>
       </div>
     </div>
   </section>
 
   <section id="categorias">
-    <p class="section-label">Clasificación</p>
-    <h2>Categorías Principales</h2>
+    <p class="section-label">Clasificación Oficial</p>
+    <h2>Categorías de Protección</h2>
     <div class="cat-grid">
       <div class="cat-item head">
-        <img src="https://cdn.pixabay.com/photo/2013/04/01/10/54/head-protection-98598_1280.png" class="cat-img">
+        <img src="https://cdn.pixabay.com/photo/2013/04/01/10/54/head-protection-98598_1280.png" class="cat-img" alt="Casco">
         <p class="cat-name">Protección Craneal</p>
-        <p class="cat-desc">Cascos certificados contra impactos mecánicos, caída de objetos y riesgos eléctricos.</p>
-        <div class="cat-tags"><span class="tag">Casco Clase E</span><span class="tag">Barbuquejo</span></div>
+        <p class="cat-desc">Obligatorio ante riesgo de caída de altura, proyección de objetos o golpes. Personal e intransferible. Debe desecharse tras recibir un golpe fuerte aunque no haya daños visibles.</p>
+        <p class="cat-art">Art. 177 · Reforma Art. 32</p>
+        <div class="cat-tags"><span class="tag">Clase E – Eléctrico</span><span class="tag">Dieléctrico</span><span class="tag">Barbuquejo (altura)</span></div>
       </div>
       <div class="cat-item eyes">
-        <img src="https://cdn.pixabay.com/photo/2019/10/06/15/48/vr-4530602_1280.png" class="cat-img">
-        <p class="cat-name">Protección Ocular</p>
-        <p class="cat-desc">Gafas de seguridad y pantallas faciales contra proyecciones y radiación UV.</p>
-        <div class="cat-tags"><span class="tag">ANSI Z87.1</span><span class="tag">Anti-empañante</span></div>
+        <img src="https://cdn.pixabay.com/photo/2019/10/06/15/48/vr-4530602_1280.png" class="cat-img" alt="Gafas">
+        <p class="cat-name">Protección de Cara y Ojos</p>
+        <p class="cat-desc">Contra impactos, polvos, humos, proyecciones químicas, radiaciones y deslumbramiento. En soldadura se requieren pantallas con filtro de oscurecimiento automático. Uso estrictamente personal.</p>
+        <p class="cat-art">Art. 178 · Reforma Art. 33</p>
+        <div class="cat-tags"><span class="tag">ANSI Z87.1</span><span class="tag">Pantalla facial</span><span class="tag">Filtro UV/IR</span></div>
+      </div>
+      <div class="cat-item ear">
+        <img src="https://cdn.pixabay.com/photo/2016/10/10/16/52/ear-1728614_1280.png" class="cat-img" alt="Oídos">
+        <p class="cat-name">Protección Auditiva</p>
+        <p class="cat-desc">Cuando el nivel de ruido supere los límites reglamentarios. Los protectores insertos se lavarán a diario; los externos se desinfectarán periódicamente. De uso personal e intransferible.</p>
+        <p class="cat-art">Art. 179 · Reforma Art. 36</p>
+        <div class="cat-tags"><span class="tag">Tapones insertos</span><span class="tag">Orejeras externas</span><span class="tag">NRR ≥ 25dB</span></div>
       </div>
       <div class="cat-item resp">
-        <img src="https://cdn.pixabay.com/photo/2020/10/19/09/01/mask-duty-5667191_1280.png" class="cat-img">
+        <img src="https://cdn.pixabay.com/photo/2020/10/19/09/01/mask-duty-5667191_1280.png" class="cat-img" alt="Mascarilla">
         <p class="cat-name">Protección Respiratoria</p>
-        <p class="cat-desc">Sistemas de filtrado para atmósferas con polvos, humos, gases o vapores químicos.</p>
-        <div class="cat-tags"><span class="tag">N95</span><span class="tag">P100</span><span class="tag">Filtros químicos</span></div>
+        <p class="cat-desc">En ambientes con concentraciones superiores a las permisibles. Se selecciona según tipo de contaminante (gaseoso/partículas) y nivel de oxígeno. Se revisará antes de cada uso y cada mes como mínimo.</p>
+        <p class="cat-art">Art. 180 · Reforma Art. 35</p>
+        <div class="cat-tags"><span class="tag">N95</span><span class="tag">P100</span><span class="tag">Equipo independiente</span></div>
       </div>
       <div class="cat-item hands">
-        <img src="https://cdn.pixabay.com/photo/2013/04/01/10/54/hand-protection-98602_1280.png" class="cat-img">
-        <p class="cat-name">Protección Manual</p>
-        <p class="cat-desc">Guantes técnicos contra riesgos mecánicos, químicos, térmicos o eléctricos.</p>
-        <div class="cat-tags"><span class="tag">Nitrilo</span><span class="tag">Kevlar</span><span class="tag">Dieléctricos</span></div>
+        <img src="https://cdn.pixabay.com/photo/2013/04/01/10/54/hand-protection-98602_1280.png" class="cat-img" alt="Guantes">
+        <p class="cat-name">Protección Extremidades Superiores</p>
+        <p class="cat-desc">Dediles, guantes, mitones y mangas para riesgos químicos/biológicos, cortes, quemaduras y contacto eléctrico. Los guantes dieléctricos de alta tensión se comprueban periódicamente.</p>
+        <p class="cat-art">Art. 181 · Reforma Art. 34</p>
+        <div class="cat-tags"><span class="tag">Nitrilo</span><span class="tag">Kevlar</span><span class="tag">Dieléctricos AT</span></div>
       </div>
       <div class="cat-item feet">
-        <img src="https://cdn.pixabay.com/photo/2013/07/12/12/33/men-at-work-145925_1280.png" class="cat-img">
-        <p class="cat-name">Protección de Pies</p>
-        <p class="cat-desc">Calzado con puntera reforzada, suela antideslizante y resistencia a perforaciones.</p>
-        <div class="cat-tags"><span class="tag">Punta de acero</span><span class="tag">Dieléctrico</span></div>
+        <img src="https://cdn.pixabay.com/photo/2013/07/12/12/33/men-at-work-145925_1280.png" class="cat-img" alt="Calzado">
+        <p class="cat-name">Protección Extremidades Inferiores</p>
+        <p class="cat-desc">Calzado seleccionado por tipo de riesgo: caídas, perforación, humedad, contacto eléctrico, altas temperaturas, deslizamiento o picaduras. Uso personal e intransferible.</p>
+        <p class="cat-art">Art. 182 · Reforma Art. 34</p>
+        <div class="cat-tags"><span class="tag">Punta de acero</span><span class="tag">Antisuela perforación</span><span class="tag">Dieléctrico</span></div>
       </div>
       <div class="cat-item fall">
-        <img src="https://cdn.pixabay.com/photo/2013/04/01/21/30/rockfall-99145_1280.png" class="cat-img">
-        <p class="cat-name">Protección de Altura</p>
-        <p class="cat-desc">Equipos de detención de caídas para trabajos por encima de 1.80 metros.</p>
-        <div class="cat-tags"><span class="tag">Arnés 4 argollas</span><span class="tag">Línea de vida</span></div>
+        <img src="https://cdn.pixabay.com/photo/2013/04/01/21/30/rockfall-99145_1280.png" class="cat-img" alt="Arnés">
+        <p class="cat-name">Protección contra Caídas</p>
+        <p class="cat-desc">Obligatorio en trabajos en altura. Sistema mínimo: arnés de cuerpo entero + anclaje + conector. Todo cinturón que haya sufrido una caída debe desecharse inmediatamente, sin excepción.</p>
+        <p class="cat-art">Art. 183 · Reforma Art. 38</p>
+        <div class="cat-tags"><span class="tag">Arnés 4 argollas</span><span class="tag">Amortiguador</span><span class="tag">Línea de vida</span></div>
+      </div>
+      <div class="cat-item body">
+        <img src="https://cdn.pixabay.com/photo/2014/03/25/16/55/man-296102_1280.png" class="cat-img" alt="Ropa">
+        <p class="cat-name">Otros Elementos de Protección</p>
+        <p class="cat-desc">Redes, almohadillas, mandiles, petos, chalecos, fajas y cualquier otro medio adecuado. Los trabajos en zonas oscuras con riesgo de atropello requieren elementos reflectantes (Art. 176.15).</p>
+        <p class="cat-art">Art. 184</p>
+        <div class="cat-tags"><span class="tag">Mandil</span><span class="tag">Chaleco reflectivo</span><span class="tag">Faja lumbar</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ropa">
+    <p class="section-label">Art. 176 · Reforma Art. 39</p>
+    <h2>Ropa de Trabajo</h2>
+    <div class="ropa-grid">
+      <div>
+        <p class="def-text">Cuando el trabajo implique riesgo de accidente o enfermedad profesional, o sea marcadamente sucio, deberá utilizarse ropa adecuada suministrada por el empleador. La Reforma 2025 exige que se ajuste a normas técnicas nacionales o internacionales vigentes.</p>
+        <ul class="ropa-list">
+          <li><strong>Ajuste y libertad de movimiento</strong>Sin partes sueltas ni rotas. Debe ajustar bien sin perjudicar la comodidad ni el rendimiento del trabajador.</li>
+          <li><strong>Sin elementos peligrosos</strong>Se eliminan bolsillos, botones salientes, cordones, corbatas, pulseras y similares para evitar enganches en maquinaria en movimiento.</li>
+          <li><strong>Material según condiciones</strong>Tejido conforme a temperatura y humedad del puesto. En lluvia: ropa impermeable obligatoria.</li>
+          <li><strong>Zonas oscuras con riesgo</strong>En lugares con riesgo de colisión o atropello, elementos reflectantes adecuados y homologados.</li>
+          <li><strong>Mangas largas</strong>Deben ajustar por tejido elástico o enrollarse siempre hacia adentro para quedar lisas por fuera.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="ropa-especial">
+          <h4>Ropas Especiales por Tipo de Riesgo</h4>
+          <ul>
+            <li>Explosión o inflamabilidad: prendas que no produzcan chispas ni cargas estáticas.</li>
+            <li>Trabajos eléctricos: ropa aislante (o conductora en trabajos al mismo potencial en líneas de transmisión).</li>
+            <li>Riesgo de fuego: ropa totalmente incombustible con recubrimiento reflejante si hay calor radiante excesivo.</li>
+            <li>Agresivos químicos o tóxicos: sin bolsillos ni fisuras, cuellos y puños perfectamente ajustados.</li>
+            <li>Radiaciones: ropa adecuada al tipo y nivel de radiación para protección total de zonas expuestas.</li>
+            <li>Altas temperaturas: aislamiento térmico suficiente para resistir contactos directos. Sin costuras por donde penetren sustancias calientes.</li>
+          </ul>
+        </div>
+        <span class="art-ref" style="margin-top:1rem; display:inline-block;">Decreto Ejecutivo No. 4217 · R.O. 997, 10 de Agosto de 1988 — actualizado por MDT-2025-122</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="reforma">
+    <p class="section-label">Normativa Vigente</p>
+    <h2>Reforma 2025</h2>
+    <div class="reforma-header">
+      <div class="decreto">Acuerdo Ministerial<br>MDT-2025-122</div>
+      <p>Emitido por la Mgs. Ivonne Elizabeth Núñez Figueroa, Ministra del Trabajo. Av. República de El Salvador N34-183 y Suiza, Quito – Ecuador. Actualiza el reglamento base e incorpora obligaciones específicas para actividades de construcción y gestión de accidentes.</p>
+    </div>
+    <div class="reforma-grid">
+      <div class="reforma-card">
+        <p class="art-num">Artículo 31</p>
+        <h4>Dotación Gratuita de EPP</h4>
+        <p>Cuando no sea posible eliminar el peligro mediante la jerarquía de controles, el empleador dotará sin costo alguno los EPP y ropa de trabajo en cantidad suficiente, considerando características técnicas y vida útil de cada equipo.</p>
+      </div>
+      <div class="reforma-card">
+        <p class="art-num">Artículo 32</p>
+        <h4>Protección de la Cabeza</h4>
+        <p>Toda persona en obra debe usar casco certificado obligatoriamente. Todo casco que reciba un golpe fuerte debe desecharse aunque no presente daños visibles. Los cascos para trabajo en altura requieren sistema de sujeción a la barbilla.</p>
+      </div>
+      <div class="reforma-card">
+        <p class="art-num">Artículo 33</p>
+        <h4>Protección de Cara y Ojos</h4>
+        <p>En soldadura y corte se requieren cascos o pantallas con filtros de oscurecimiento automático. El empleador garantizará disponibilidad, mantenimiento preventivo/correctivo y capacitación sobre uso y reemplazo oportuno.</p>
+      </div>
+      <div class="reforma-card">
+        <p class="art-num">Artículo 34</p>
+        <h4>Protección de Extremidades</h4>
+        <p>Calzado con punteras y suelas antideslizantes en zonas con riesgo de objetos caídos o superficies resbaladizas. Los electricistas deben usar calzado con suelas aislantes. Se considerarán rodilleras y coderas cuando el trabajo lo requiera.</p>
+      </div>
+      <div class="reforma-card">
+        <p class="art-num">Artículo 35</p>
+        <h4>Protección Respiratoria</h4>
+        <p>Los equipos respiratorios deben usarse considerando sus límites de utilización, el nivel de protección que ofrecen, la concentración y duración de la exposición al contaminante, y la vida útil del respirador.</p>
+      </div>
+      <div class="reforma-card">
+        <p class="art-num">Artículo 38</p>
+        <h4>Sistema contra Caídas</h4>
+        <p>Sistema mínimo: arnés de cuerpo entero + anclaje + conector. Los medios de conexión pueden ser eslinga, dispositivo de desaceleración, cable salvavidas o combinación adecuada, conforme a normas nacionales o internacionales.</p>
+      </div>
+      <div class="reforma-card">
+        <p class="art-num">Artículos 28–29</p>
+        <h4>Certificación por Competencias</h4>
+        <p>El técnico de seguridad e higiene para actividades de construcción debe contar con certificación de competencias laborales ante Organismos Evaluadores de la Conformidad (OEC) acreditados por la autoridad competente.</p>
+      </div>
+      <div class="reforma-card">
+        <p class="art-num">Artículo 30</p>
+        <h4>Gestión de Accidentes</h4>
+        <p>El empleador debe investigar y analizar incidentes para identificar causas y adoptar acciones correctivas. Debe mantener sistema de registro y notificación accesible a autoridades, empleadores y trabajadores.</p>
       </div>
     </div>
   </section>
@@ -268,21 +424,21 @@
     <p class="section-label">Aval Institucional</p>
     <h2>Organismos Colaboradores</h2>
     <div class="inst-grid">
-      <div class="inst-card">
-        <img src="Iess-Ecuador-Logo-Vector.svg-.png">
+      <a href="https://www.iess.gob.ec/" target="_blank" rel="noopener" class="inst-card">
+        <img src="Iess-Ecuador-Logo-Vector.svg-.png" alt="IESS">
         <h3>IESS</h3>
-        <p class="def-text">Seguro de Riesgos del Trabajo. Principal ente regulador y prestador de salud laboral en el Ecuador.</p>
-      </div>
-      <div class="inst-card">
-        <img src="483828084_122158731566330290_7486048266412946768_n-removebg-preview (1).png">
+        <p class="def-text">Seguro de Riesgos del Trabajo. Principal ente regulador y prestador de salud laboral en el Ecuador. Administra prestaciones derivadas de accidentes y enfermedades profesionales.</p>
+      </a>
+      <a href="https://ueligami.edu.ec/" target="_blank" rel="noopener" class="inst-card">
+        <img src="483828084_122158731566330290_7486048266412946768_n-removebg-preview (1).png" alt="LIGAMI">
         <h3>LIGAMI</h3>
-        <p class="def-text">Unidad Educativa líder en formación técnica integral y compromiso con la cultura preventiva.</p>
-      </div>
-      <div class="inst-card">
-        <img src="Logo-GAD-Ambato-1024x295.png">
+        <p class="def-text">Unidad Educativa líder en formación técnica integral y cultura preventiva en seguridad industrial y salud ocupacional a nivel nacional.</p>
+      </a>
+      <a href="https://ambato.gob.ec/" target="_blank" rel="noopener" class="inst-card">
+        <img src="Logo-GAD-Ambato-1024x295.png" alt="GAD Ambato">
         <h3>GAD AMBATO</h3>
-        <p class="def-text">Gobierno Municipal que regula y promueve estándares de seguridad industrial en el sector urbano.</p>
-      </div>
+        <p class="def-text">Gobierno Municipal que regula y promueve estándares de seguridad industrial en el sector urbano. Fiscaliza el cumplimiento de normativas locales en obras y construcciones.</p>
+      </a>
     </div>
   </section>
 
@@ -290,19 +446,59 @@
     <p class="section-label">Estadísticas Vitales</p>
     <h2>¿Por qué es obligatorio?</h2>
     <div class="stats-row">
-      <div class="stat-box"><p class="stat-num">60%</p><p class="stat-desc">de las lesiones fatales se evitarían con el uso del casco y arnés adecuado.</p></div>
-      <div class="stat-box"><p class="stat-num">2.3M</p><p class="stat-desc">muertes anuales registradas por la OIT debido a enfermedades o accidentes laborales.</p></div>
-      <div class="stat-box"><p class="stat-num">340M</p><p class="stat-desc">accidentes no fatales ocurren al año, dejando discapacidades en miles de trabajadores.</p></div>
+      <div class="stat-box">
+        <p class="stat-num">60%</p>
+        <p class="stat-desc">de las lesiones fatales se evitarían con el uso correcto del casco y arnés adecuado en trabajos de altura.</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-num">2.3M</p>
+        <p class="stat-desc">muertes anuales registradas por la OIT por accidentes o enfermedades derivadas del trabajo en todo el mundo.</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-num">340M</p>
+        <p class="stat-desc">accidentes no fatales al año dejan discapacidades permanentes en miles de trabajadores globalmente.</p>
+      </div>
     </div>
+  </section>
+
+  <section id="jerarquia">
+    <p class="section-label">Principio Preventivo</p>
+    <h2>Jerarquía de Controles</h2>
+    <p class="def-text" style="max-width:640px; margin-bottom:0.5rem;">El EPP es el último recurso. La Reforma 2025 (Art. 31) establece que se aplica solo cuando no sea posible eliminar o reducir el riesgo mediante medidas colectivas o controles superiores.</p>
+    <div class="jerarquia-piramide">
+      <div class="jerarquia-nivel n1">
+        <span class="jn-num">1</span>
+        <div class="jn-content"><h4>Eliminación</h4><p>Remover completamente el peligro del lugar de trabajo. La medida más eficaz posible.</p></div>
+      </div>
+      <div class="jerarquia-nivel n2">
+        <span class="jn-num">2</span>
+        <div class="jn-content"><h4>Sustitución</h4><p>Reemplazar el material, proceso o equipo peligroso por uno de menor riesgo para el trabajador.</p></div>
+      </div>
+      <div class="jerarquia-nivel n3">
+        <span class="jn-num">3</span>
+        <div class="jn-content"><h4>Controles de Ingeniería</h4><p>Aislar a las personas del peligro: barreras físicas, ventilación forzada, resguardos en maquinaria.</p></div>
+      </div>
+      <div class="jerarquia-nivel n4">
+        <span class="jn-num">4</span>
+        <div class="jn-content"><h4>Controles Administrativos</h4><p>Cambiar la forma de trabajar: señalización, rotación de puestos, capacitación y procedimientos.</p></div>
+      </div>
+      <div class="jerarquia-nivel n5">
+        <span class="jn-num">5</span>
+        <div class="jn-content"><h4>EPP — Última Línea de Defensa</h4><p>Proteger al trabajador con equipo certificado cuando el riesgo no puede controlarse de otra forma.</p></div>
+      </div>
+    </div>
+    <p class="jerarquia-note">Fuente: ISO 45001 · Art. 175 Reglamento de Seguridad Ecuador · Art. 31 Reforma MDT-2025-122</p>
   </section>
 
   <section id="normativa">
     <p class="section-label">Marco Legal</p>
-    <h2>Estándares Internacionales</h2>
-    <div class="norma-item"><span class="norma-badge">ISO 45001</span><p>Norma mundial para Sistemas de Gestión de Seguridad y Salud en el Trabajo.</p></div>
-    <div class="norma-item"><span class="norma-badge">NIOSH</span><p>Certificación de máxima exigencia para equipos de protección respiratoria en EE.UU.</p></div>
-    <div class="norma-item"><span class="norma-badge">Marcado CE</span><p>Certifica que el producto cumple con los requisitos legales y técnicos de seguridad de la Unión Europea.</p></div>
-    <div class="norma-item"><span class="norma-badge">NTE INEN</span><p>Normas Técnicas Ecuatorianas que dictan la calidad mínima de los EPP en el país.</p></div>
+    <h2>Estándares y Normas Aplicables</h2>
+    <div class="norma-item"><span class="norma-badge">ISO 45001</span><p>Sistema de Gestión de Seguridad y Salud en el Trabajo. Norma mundial que incluye la jerarquía de controles y criterios para selección de EPP.</p></div>
+    <div class="norma-item"><span class="norma-badge">NTE INEN</span><p>Normas Técnicas Ecuatorianas. Los EPP deben seleccionarse entre los normalizados u homologados por el INEN, según el Art. 175 numeral 7 del Reglamento de Seguridad.</p></div>
+    <div class="norma-item"><span class="norma-badge">MDT-2025-122</span><p>Acuerdo Ministerial vigente del Ministerio del Trabajo del Ecuador. Última reforma del Reglamento con obligaciones específicas para construcción y gestión de accidentes laborales.</p></div>
+    <div class="norma-item"><span class="norma-badge">NIOSH</span><p>Certificación del Instituto Nacional para la Seguridad y Salud Ocupacional de EE.UU. Exigida para equipos de protección respiratoria de alta exigencia (N95, P100).</p></div>
+    <div class="norma-item"><span class="norma-badge">Marcado CE</span><p>Certifica conformidad con los requisitos legales y técnicos de la Unión Europea. Referencia internacional válida en ausencia de normas nacionales (Art. 175).</p></div>
+    <div class="norma-item"><span class="norma-badge">ANSI Z87.1</span><p>Norma americana para protección ocular y facial. Estándar de referencia para selección de gafas, pantallas y equipos de soldadura (Reforma Art. 33).</p></div>
   </section>
 
   <section id="uso">
@@ -313,56 +509,62 @@
         <span class="paso-num">01</span>
         <div class="paso-content">
           <div class="paso-line"></div>
-          <h3 style="margin-bottom:0.5rem">Inspección Previa</h3>
-          <p class="def-text">Detectar grietas, rasgaduras o vencimiento del equipo antes de cada jornada laboral.</p>
+          <h3>Inspección Previa</h3>
+          <p class="def-text">Detectar grietas, abolladuras, fisuras o vencimiento antes de cada jornada. Los equipos respiratorios deben revisarse en períodos no superiores a un mes (Art. 180).</p>
         </div>
       </div>
       <div class="paso">
         <span class="paso-num">02</span>
         <div class="paso-content">
           <div class="paso-line"></div>
-          <h3 style="margin-bottom:0.5rem">Ajuste Ergonómico</h3>
-          <p class="def-text">El EPP debe ajustarse firmemente pero permitir la movilidad. Un arnés flojo es un riesgo fatal.</p>
+          <h3>Ajuste Ergonómico</h3>
+          <p class="def-text">El EPP debe ajustarse firmemente pero permitir la movilidad. Un arnés flojo o un casco sin barbuquejo en altura constituye un riesgo fatal (Art. 183).</p>
         </div>
       </div>
       <div class="paso">
         <span class="paso-num">03</span>
         <div class="paso-content">
           <div class="paso-line"></div>
-          <h3 style="margin-bottom:0.5rem">Uso Permanente</h3>
-          <p class="def-text">La protección debe mantenerse durante el 100% del tiempo de exposición al riesgo.</p>
+          <h3>Uso Permanente</h3>
+          <p class="def-text">La protección se mantiene el 100% del tiempo de exposición al riesgo. No se permite modificar ni reformar ningún equipo (Art. 175, numeral 5b).</p>
         </div>
       </div>
       <div class="paso">
         <span class="paso-num">04</span>
         <div class="paso-content">
           <div class="paso-line"></div>
-          <h3 style="margin-bottom:0.5rem">Limpieza Técnica</h3>
-          <p class="def-text">Higienizar los equipos con productos no corrosivos para no degradar los materiales.</p>
+          <h3>Limpieza y Desinfección</h3>
+          <p class="def-text">Higienizar con productos no corrosivos para no degradar los materiales. Desinfectar periódicamente los equipos de cara, oídos y vías respiratorias (Art. 178, 179, 180).</p>
         </div>
       </div>
       <div class="paso">
         <span class="paso-num">05</span>
         <div class="paso-content">
           <div class="paso-line"></div>
-          <h3 style="margin-bottom:0.5rem">Almacenaje Correcto</h3>
-          <p class="def-text">Guardar en lugares libres de humedad, sol directo y contaminación química.</p>
+          <h3>Almacenaje Correcto</h3>
+          <p class="def-text">Preservar de radiaciones solares, calor, frío, humedad y agresivos químicos. Los cascos con convexidad hacia arriba para evitar acumulación de polvo interior (Art. 177).</p>
         </div>
       </div>
       <div class="paso">
         <span class="paso-num">06</span>
         <div class="paso-content">
           <div class="paso-line"></div>
-          <h3 style="margin-bottom:0.5rem">Reposición Inmediata</h3>
-          <p class="def-text">Todo EPP que haya sufrido un impacto o presente fatiga debe ser reemplazado sin excepción.</p>
+          <h3>Reposición Inmediata</h3>
+          <p class="def-text">Todo EPP que haya sufrido impacto, choque o caída debe reemplazarse aunque no presente daños visibles. El empleador está obligado a renovar oportunamente (Art. 177, 183).</p>
         </div>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="footer-logo">EPP · SEGURIDAD INDUSTRIAL</div>
-    <p style="color:rgba(255,255,255,0.2); font-size:0.8rem">Guía Técnica Profesional para la Prevención de Riesgos Laborales © 2026</p>
+    <div class="footer-logo">EPP · SEGURIDAD INDUSTRIAL ECUADOR</div>
+    <p style="color:rgba(250,246,238,0.22); font-size:0.8rem; margin-top:0.5rem">Guía Técnica basada en el Reglamento de Seguridad y Salud de los Trabajadores © 2026</p>
+    <div class="footer-ref">
+      <span>Art. 175–184 · Reglamento de Seguridad Ecuador</span>
+      <span>Acuerdo Ministerial MDT-2025-122</span>
+      <span>ISO 45001 · NTE INEN · NIOSH · ANSI Z87.1</span>
+      <span>Decreto Ejecutivo No. 4217 · R.O. 997/1988</span>
+    </div>
   </footer>
 
 </body>
