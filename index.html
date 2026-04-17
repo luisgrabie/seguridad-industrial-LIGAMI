@@ -38,13 +38,11 @@
     .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 75% 25%, rgba(240,180,41,0.25) 0%, transparent 60%), radial-gradient(ellipse 40% 50% at 20% 80%, rgba(90,50,10,0.4) 0%, transparent 60%); z-index: 0; }
     .hero-content { position: relative; z-index: 2; }
     .hero-logos-top { position: absolute; top: 100px; left: 4rem; right: 4rem; display: flex; justify-content: space-between; align-items: center; z-index: 2; }
-    .logo-anim { opacity: 0; height: 80px; object-fit: contain; }
+    .logo-anim { opacity: 0; height: 110px; object-fit: contain; }
     .logo-l { transform: translateX(-50px); animation: slideIn 1s ease 0.3s forwards; }
     .logo-r { transform: translateX(50px); animation: slideIn 1s ease 0.3s forwards; }
     @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
-    .hero-tag { font-size: 0.75rem; letter-spacing: 0.25em; color: var(--amarillo-vivo); margin-bottom: 1.5rem; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
-    .hero-tag::before { content: ''; width: 30px; height: 2px; background: var(--amarillo-vivo); }
-    h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3rem, 9vw, 7.5rem); line-height: 0.92; color: #FAF6EE; }
+    h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 0.92; color: #FAF6EE; }
     h1 span { color: var(--amarillo-vivo); }
     .hero-sub { max-width: 550px; margin-top: 2rem; font-size: 1.05rem; color: rgba(250,246,238,0.72); line-height: 1.8; }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 1.8rem; padding: 9px 18px; background: rgba(240,180,41,0.1); border: 1px solid rgba(240,180,41,0.3); border-radius: 6px; font-size: 0.78rem; color: var(--amarillo-vivo); font-weight: 600; letter-spacing: 0.05em; }
@@ -175,9 +173,9 @@
       section { padding: 3.5rem 1.4rem; }
       .hero { padding: 0 1.4rem 4rem; }
       .hero-logos-top { top: 80px; left: 1.4rem; right: 1.4rem; }
-      .logo-anim { height: 50px; }
+      .logo-anim { height: 75px; }
       .hero-scroll { display: none; }
-      h1 { font-size: clamp(2.6rem, 13vw, 4rem); }
+      h1 { font-size: clamp(2rem, 10vw, 3.5rem); }
       h2 { font-size: clamp(1.7rem, 7vw, 2.4rem); }
       .cat-grid, .reforma-grid, .pasos-grid { grid-template-columns: 1fr; gap: 1.2rem; }
       .stats-row { grid-template-columns: 1fr; gap: 1rem; }
@@ -192,7 +190,7 @@
       .footer-ref { flex-direction: column; gap: 0.8rem; }
     }
     @media (max-width: 480px) {
-      h1 { font-size: clamp(2.2rem, 14vw, 3rem); }
+      h1 { font-size: clamp(1.8rem, 11vw, 2.8rem); }
       section { padding: 3rem 1rem; }
       .hero { padding: 0 1rem 3rem; }
     }
@@ -221,7 +219,6 @@
       <img src="483828084_122158731566330290_7486048266412946768_n-removebg-preview (1).png" class="logo-anim logo-r" alt="LIGAMI">
     </div>
     <div class="hero-content">
-      <p class="hero-tag">Seguridad Industrial · Ecuador</p>
       <h1>Equipos de<br><span>Protección</span><br>Personal</h1>
       <p class="hero-sub">Normativa técnica vigente, clasificación oficial y protocolos de seguridad conforme al Reglamento de Seguridad y Salud de los Trabajadores y la Reforma 2025 del Ministerio del Trabajo.</p>
       <div class="hero-badge">⚖ Acuerdo Ministerial MDT-2025-122 · Vigente</div>
